@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import Image from "next/image";
-import { Terminal, Code2, Sparkles, RefreshCw, Eye } from "lucide-react";
+import { Terminal, Code2, RefreshCw, Eye } from "lucide-react";
 
 interface Particle {
   originX: number;
@@ -35,7 +35,6 @@ export default function CodeSplittingPortrait() {
   const [photoIndex, setPhotoIndex] = useState(0);
   const [scrollFactor, setScrollFactor] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
-  const mouseRef = useRef({ x: -1000, y: -1000, radius: 100 });
   const particlesRef = useRef<Particle[]>([]);
   const animationFrameRef = useRef<number | null>(null);
 
@@ -120,7 +119,7 @@ export default function CodeSplittingPortrait() {
     }
   }, [photoIndex, initParticles]);
 
-  // Handle Scroll Progress
+  // Handle Scroll Progress exclusively (no hover split)
   useEffect(() => {
     const handleScroll = () => {
       if (!containerRef.current) return;
@@ -138,7 +137,7 @@ export default function CodeSplittingPortrait() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Main Render Loop
+  // Main Render Loop: Driven strictly by scrollFactor
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -153,7 +152,6 @@ export default function CodeSplittingPortrait() {
 
       const particles = particlesRef.current;
       const factor = scrollFactor;
-      const mouse = mouseRef.current;
 
       scanlineY = (scanlineY + 3) % canvas.height;
 
@@ -163,9 +161,13 @@ export default function CodeSplittingPortrait() {
         ctx.fillRect(0, scanlineY, canvas.width, 2);
       }
 
-      // If at rest and mouse is outside, keep canvas transparent so crystal-clear photo shines underneath!
-      const hasMouseInteraction = mouse.x > 0 && mouse.y > 0;
-      if (factor <= 0.02 && !hasMouseInteraction) {
+      // When at rest (not scrolled), keep canvas clear so the photo stays 100% pristine and undisturbed!
+      if (factor <= 0.015) {
+        // Reset particles to origins smoothly
+        for (let i = 0; i < particles.length; i++) {
+          particles[i].currentX = particles[i].originX;
+          particles[i].currentY = particles[i].originY;
+        }
         animationFrameRef.current = requestAnimationFrame(render);
         return;
       }
@@ -178,30 +180,16 @@ export default function CodeSplittingPortrait() {
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
 
-        // 1. Calculate Split Dispersion from Scroll
+        // Calculate Split Dispersion strictly from Scroll
         const isOddRow = Math.floor(p.originY / 14) % 2 === 0;
         const splitDirection = isOddRow ? 1 : -1;
         
         const targetX = p.originX + (Math.cos(p.dispAngle) * p.dispSpeed * disperseProgress * splitDirection);
         const targetY = p.originY + (Math.sin(p.dispAngle) * p.dispSpeed * disperseProgress) + (disperseProgress * 150);
 
-        // 2. Mouse Repulsion / Glitch
-        const dx = mouse.x - p.currentX;
-        const dy = mouse.y - p.currentY;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        let mouseDisplaceX = 0;
-        let mouseDisplaceY = 0;
-
-        if (dist < mouse.radius) {
-          const force = (1 - dist / mouse.radius) * 45;
-          const angle = Math.atan2(dy, dx);
-          mouseDisplaceX = -Math.cos(angle) * force;
-          mouseDisplaceY = -Math.sin(angle) * force;
-        }
-
-        // Interpolate smoothly
-        p.currentX += (targetX + mouseDisplaceX - p.currentX) * 0.2;
-        p.currentY += (targetY + mouseDisplaceY - p.currentY) * 0.2;
+        // Interpolate smoothly towards target
+        p.currentX += (targetX - p.currentX) * 0.22;
+        p.currentY += (targetY - p.currentY) * 0.22;
 
         // Render code glyphs
         const charSize = Math.max(9, Math.floor(p.size * 1.15));
@@ -246,18 +234,7 @@ export default function CodeSplittingPortrait() {
     return () => window.removeEventListener("resize", handleResize);
   }, [photoIndex, initParticles]);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLCanvasElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    mouseRef.current.x = e.clientX - rect.left;
-    mouseRef.current.y = e.clientY - rect.top;
-  };
-
-  const handleMouseLeave = () => {
-    mouseRef.current.x = -1000;
-    mouseRef.current.y = -1000;
-  };
-
-  // Base Photo Opacity: Crystal clear 100% at top, dissolves cleanly as code takes over on scroll
+  // Base Photo Opacity: 100% visible at rest, dissolves strictly on scroll
   const basePhotoOpacity = Math.max(0, 1 - scrollFactor * 2.5);
 
   return (
@@ -290,12 +267,10 @@ export default function CodeSplittingPortrait() {
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
         </div>
 
-        {/* Layer 2: Interactive Code Splitting Canvas */}
+        {/* Layer 2: Interactive Code Splitting Canvas (Strictly scroll-driven) */}
         <canvas
           ref={canvasRef}
-          onMouseMove={handleMouseMove}
-          onMouseLeave={handleMouseLeave}
-          className="absolute inset-0 z-10 w-full h-full cursor-crosshair block"
+          className="absolute inset-0 z-10 w-full h-full block pointer-events-none"
         />
 
         {/* Loading Spinner */}
@@ -353,9 +328,8 @@ export default function CodeSplittingPortrait() {
           <Code2 className="w-3.5 h-3.5 text-emerald-400" />
           Crystal clear at rest &bull; Splits into code on scroll
         </span>
-        <span className="hidden sm:inline text-cyan-400/80 flex items-center gap-1">
-          <Sparkles className="w-3 h-3" />
-          Cursor Ripple
+        <span className="text-[#777B84]">
+          Scroll-activated
         </span>
       </div>
     </div>
