@@ -1,20 +1,23 @@
 {
-  "name": "Portfolio App",
-  "short_name": "My Portfolio",
+  "name": "Sagar Kumar — The Human Behind The Machine",
+  "short_name": "Sagar Kumar",
+  "description": "Portfolio of Sagar Kumar — MERN Full-Stack Developer & AI Engineer Intern",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#000000",
+  "background_color": "#050505",
+  "theme_color": "#050505",
   "icons": [
     {
       "src": "/icons/icon-192x192.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "any maskable"
     },
     {
       "src": "/icons/icon-512x512.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "purpose": "any maskable"
     }
   ]
 }
