@@ -85,13 +85,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark scroll-smooth">
-      <head>
-        <link rel="manifest" href="/manifest.json" />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
-      </head>
+    <html lang="en" className="dark scroll-smooth" suppressHydrationWarning>
       <body
+        suppressHydrationWarning
         className={`${spaceGrotesk.variable} ${ibmPlexMono.variable} ${inter.variable} bg-[#050505] text-[#F5F5F5] antialiased selection:bg-[#D9DDE4]/20 selection:text-white`}
       >
         {children}

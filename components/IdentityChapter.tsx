@@ -55,17 +55,17 @@ export default function IdentityChapter() {
               <div className="absolute -bottom-3 -left-3 w-6 h-6 border-b-2 border-l-2 border-[#D9DDE4]/20 z-20 pointer-events-none" />
 
               {/* Main Photo Container */}
-              <div className="relative rounded-lg overflow-hidden border border-[#D9DDE4]/20 bg-[#111318] shadow-[0_20px_50px_rgba(0,0,0,0.9)] group">
+              <div className="relative rounded-lg overflow-hidden border border-[#D9DDE4]/25 bg-[#111318] shadow-[0_20px_50px_rgba(0,0,0,0.9)] group">
                 <div className="aspect-[3/4] relative w-full overflow-hidden">
                   <Image
                     src="/images/sagar-portrait-blue.jpg"
                     alt="Sagar Kumar — Full-Stack Developer & AI Engineer Intern"
                     fill
-                    className="object-cover object-center filter grayscale contrast-110 brightness-95 group-hover:grayscale-0 group-hover:contrast-105 transition-all duration-700"
+                    className="object-cover object-center filter contrast-105 brightness-100 transition-all duration-500 group-hover:scale-105"
                     priority
                   />
-                  {/* Subtle scanline overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-80" />
+                  {/* Subtle vignette gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-60" />
                 </div>
 
                 {/* Technical Card Overlay on photo footer */}
