@@ -81,7 +81,7 @@ export default function EngineeringCore() {
           {/* Left Navigation: Subsystem Selectors */}
           <div className="lg:col-span-5 space-y-3">
             <div className="font-mono-tech text-[11px] text-[#777B84] uppercase tracking-wider mb-2">
-              SELECT SUBSYSTEM TO INSPECT
+              SUBSYSTEM MODULES
             </div>
 
             {PORTFOLIO_DATA.skillCategories.map((category, idx) => {

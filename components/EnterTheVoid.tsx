@@ -167,7 +167,7 @@ export default function EnterTheVoid() {
           onClick={scrollToNext}
           className="flex items-center gap-2 font-mono-tech text-xs text-[#A1A1AA] hover:text-white transition-colors group cursor-pointer"
         >
-          <span>SCROLL TO DECONSTRUCT INTO CODE</span>
+          <span>EXPLORE ARCHITECTURE</span>
           <ArrowDown className="w-3.5 h-3.5 group-hover:translate-y-1 transition-transform text-emerald-400" />
         </button>
       </div>

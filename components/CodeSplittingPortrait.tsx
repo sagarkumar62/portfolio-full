@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import Image from "next/image";
-import { Terminal, Code2, RefreshCw, Eye } from "lucide-react";
+import { Terminal, Eye } from "lucide-react";
 
 interface Particle {
   originX: number;
@@ -32,7 +32,7 @@ const PHOTOS = [
 export default function CodeSplittingPortrait() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [photoIndex, setPhotoIndex] = useState(0);
+  const photoIndex = 0;
   const [scrollFactor, setScrollFactor] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const particlesRef = useRef<Particle[]>([]);
@@ -306,31 +306,10 @@ export default function CodeSplittingPortrait() {
               Sagar Kumar
             </div>
             <div className="font-mono-tech text-[10px] text-[#A1A1AA]">
-              {scrollFactor > 0.08 ? `DISPERSED: ${(scrollFactor * 100).toFixed(0)}% INTO CODE` : "SCROLL TO DECONSTRUCT INTO CODE"}
+              MERN Full-Stack Developer &amp; AI Engineer Intern
             </div>
           </div>
-
-          {/* Quick Photo Switcher Button */}
-          <button
-            onClick={() => setPhotoIndex((prev) => (prev + 1) % PHOTOS.length)}
-            className="p-2.5 rounded-lg bg-[#161922] border border-[#D9DDE4]/20 text-[#D9DDE4] hover:text-white hover:border-[#D9DDE4]/50 transition-all flex items-center gap-1.5 cursor-pointer shadow-md text-[11px] font-mono-tech"
-            title="Cycle portrait angle"
-          >
-            <RefreshCw className="w-3.5 h-3.5 text-cyan-400" />
-            <span className="hidden sm:inline">CYCLE PHOTO</span>
-          </button>
         </div>
-      </div>
-
-      {/* Interactive Helper Caption */}
-      <div className="mt-3 flex items-center justify-between w-full font-mono-tech text-[11px] text-[#777B84] px-1">
-        <span className="flex items-center gap-1 text-[#A1A1AA]">
-          <Code2 className="w-3.5 h-3.5 text-emerald-400" />
-          Crystal clear at rest &bull; Splits into code on scroll
-        </span>
-        <span className="text-[#777B84]">
-          Scroll-activated
-        </span>
       </div>
     </div>
   );
