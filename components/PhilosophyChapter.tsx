@@ -30,14 +30,18 @@ export default function PhilosophyChapter() {
 
         {/* Section Headline */}
         <div className="max-w-4xl mb-16">
-          <div className="font-mono-tech text-xs text-[#777B84] mb-3 tracking-widest">
-            ENGINEERING CREED
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-[#161922] border border-[#D9DDE4]/15 text-[#D9DDE4] font-mono-tech text-xs mb-3">
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+            <span>THE UNCOMPROMISING CREED // FIRST PRINCIPLES</span>
           </div>
           <h2 className="font-display text-4xl sm:text-6xl font-bold tracking-tight text-white leading-tight">
             I BUILD <span className="text-chrome">SYSTEMS</span>,
             <br />
             NOT JUST SCREENS.
           </h2>
+          <p className="mt-4 text-[#A1A1AA] text-base sm:text-lg font-light leading-relaxed max-w-2xl">
+            In an era where language models can generate boilerplate syntax in seconds, the software engineer&apos;s true value is architectural vision, runtime determinism, and an uncompromising obsession with ground truth.
+          </p>
         </div>
 
         {/* Grid: 4 Core Principles + Authentic Workspace Photo */}

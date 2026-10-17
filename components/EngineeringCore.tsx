@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Layers,
   Server,
@@ -62,8 +63,9 @@ export default function EngineeringCore() {
 
         {/* Section Headline */}
         <div className="max-w-3xl mb-12">
-          <div className="font-mono-tech text-xs text-[#777B84] mb-3 tracking-widest">
-            SUBSYSTEM ARCHITECTURE
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-[#161922] border border-[#D9DDE4]/15 text-[#D9DDE4] font-mono-tech text-xs mb-3">
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+            <span>THE ARCHITECTURAL BLUEPRINT // 5 CONNECTED SECTORS</span>
           </div>
           <h2 className="font-display text-4xl sm:text-6xl font-bold tracking-tight text-white leading-tight">
             CONNECTED <span className="text-chrome">SYSTEMS</span>,
@@ -71,7 +73,7 @@ export default function EngineeringCore() {
             NOT ISOLATED BADGES.
           </h2>
           <p className="mt-4 text-[#A1A1AA] text-base sm:text-lg font-light leading-relaxed">
-            Technical competencies modeled as an integrated intelligence engine. Frontend ergonomics, resilient backend services, vector retrieval pipelines, and distributed databases working in verified cohesion.
+            An intelligent system functions as an integrated organism: frontend perception, resilient backend nerve pathways, vector cognitive search, and distributed memory stores working in verified cohesion.
           </p>
         </div>
 
@@ -167,73 +169,83 @@ export default function EngineeringCore() {
             <div className="absolute bottom-3 left-3 w-3 h-3 border-b border-l border-[#D9DDE4]/40" />
             <div className="absolute bottom-3 right-3 w-3 h-3 border-b border-r border-[#D9DDE4]/40" />
 
-            {/* Subsystem Telemetry Banner */}
-            <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-[#D9DDE4]/10 mb-6">
-              <div>
-                <span className="font-mono-tech text-[10px] text-[#777B84]">
-                  INSPECTING SECTOR 0{activeCategoryIndex + 1}
-                </span>
-                <h3 className="font-display text-2xl sm:text-3xl font-bold text-white">
-                  {activeCategory.title}
-                </h3>
-              </div>
-              <div className="font-mono-tech text-xs px-3 py-1 rounded bg-[#161922] text-[#D9DDE4] border border-[#D9DDE4]/20 flex items-center gap-1.5">
-                <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-                VERIFIED CAPABILITY
-              </div>
-            </div>
-
-            <p className="text-[#A1A1AA] text-sm sm:text-base leading-relaxed mb-8 font-light">
-              {activeCategory.description}
-            </p>
-
-            {/* Connected Capability Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-              {activeCategory.skills.map((skill) => (
-                <div
-                  key={skill.name}
-                  className={`p-3.5 rounded-lg border transition-all ${
-                    skill.highlight
-                      ? "bg-[#181B24] border-[#D9DDE4]/25 shadow-sm"
-                      : "bg-[#0E1015]/80 border-[#D9DDE4]/10"
-                  }`}
-                >
-                  <div className="flex items-center justify-between mb-1.5">
-                    <span className="font-display text-sm font-semibold text-white">
-                      {skill.name}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeCategory.categoryKey}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.25, ease: "easeOut" }}
+              >
+                {/* Subsystem Telemetry Banner */}
+                <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-[#D9DDE4]/10 mb-6">
+                  <div>
+                    <span className="font-mono-tech text-[10px] text-[#777B84]">
+                      INSPECTING SECTOR 0{activeCategoryIndex + 1}
                     </span>
-                    <span
-                      className={`font-mono-tech text-[9px] px-2 py-0.5 rounded ${
-                        skill.level === "Core"
-                          ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
-                          : skill.level === "Advanced"
-                          ? "bg-cyan-500/10 text-cyan-400 border border-cyan-500/20"
-                          : "bg-white/5 text-[#A1A1AA] border border-white/10"
-                      }`}
-                    >
-                      {skill.level}
-                    </span>
+                    <h3 className="font-display text-2xl sm:text-3xl font-bold text-white">
+                      {activeCategory.title}
+                    </h3>
                   </div>
-                  <div className="w-full bg-white/5 h-1 rounded-full overflow-hidden">
-                    <div
-                      className={`h-full rounded-full ${
-                        skill.level === "Core"
-                          ? "w-full bg-gradient-to-r from-emerald-500 to-[#D9DDE4]"
-                          : skill.level === "Advanced"
-                          ? "w-4/5 bg-gradient-to-r from-cyan-500 to-[#D9DDE4]"
-                          : "w-3/5 bg-[#777B84]"
-                      }`}
-                    />
+                  <div className="font-mono-tech text-xs px-3 py-1 rounded bg-[#161922] text-[#D9DDE4] border border-[#D9DDE4]/20 flex items-center gap-1.5">
+                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                    VERIFIED CAPABILITY
                   </div>
                 </div>
-              ))}
-            </div>
 
-            {/* Technical Verification Note */}
-            <div className="mt-8 pt-6 border-t border-[#D9DDE4]/10 flex flex-wrap items-center justify-between text-xs font-mono-tech text-[#777B84] gap-2">
-              <span>SOURCE TRUTH: PROJECTS & APPOINTMENTS</span>
-              <span className="text-[#A1A1AA]">ZERO FABRICATED CERTIFICATIONS</span>
-            </div>
+                <p className="text-[#A1A1AA] text-sm sm:text-base leading-relaxed mb-8 font-light">
+                  {activeCategory.description}
+                </p>
+
+                {/* Connected Capability Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                  {activeCategory.skills.map((skill) => (
+                    <div
+                      key={skill.name}
+                      className={`p-3.5 rounded-lg border transition-all ${
+                        skill.highlight
+                          ? "bg-[#181B24] border-[#D9DDE4]/25 shadow-sm"
+                          : "bg-[#0E1015]/80 border-[#D9DDE4]/10"
+                      }`}
+                    >
+                      <div className="flex items-center justify-between mb-1.5">
+                        <span className="font-display text-sm font-semibold text-white">
+                          {skill.name}
+                        </span>
+                        <span
+                          className={`font-mono-tech text-[9px] px-2 py-0.5 rounded ${
+                            skill.level === "Core"
+                              ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
+                              : skill.level === "Advanced"
+                              ? "bg-cyan-500/10 text-cyan-400 border border-cyan-500/20"
+                              : "bg-white/5 text-[#A1A1AA] border border-white/10"
+                          }`}
+                        >
+                          {skill.level}
+                        </span>
+                      </div>
+                      <div className="w-full bg-white/5 h-1 rounded-full overflow-hidden">
+                        <div
+                          className={`h-full rounded-full ${
+                            skill.level === "Core"
+                              ? "w-full bg-gradient-to-r from-emerald-500 to-[#D9DDE4]"
+                              : skill.level === "Advanced"
+                              ? "w-4/5 bg-gradient-to-r from-cyan-500 to-[#D9DDE4]"
+                              : "w-3/5 bg-[#777B84]"
+                          }`}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Technical Verification Note */}
+                <div className="mt-8 pt-6 border-t border-[#D9DDE4]/10 flex flex-wrap items-center justify-between text-xs font-mono-tech text-[#777B84] gap-2">
+                  <span>SOURCE TRUTH: PROJECTS & APPOINTMENTS</span>
+                  <span className="text-[#A1A1AA]">ZERO FABRICATED CERTIFICATIONS</span>
+                </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
       </div>

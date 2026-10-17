@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   ExternalLink,
   Github,
@@ -224,7 +225,15 @@ export default function ProjectShowcase() {
           <div className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-[#D9DDE4]/40" />
           <div className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-[#D9DDE4]/40" />
 
-          {/* Top Banner */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={selectedProject.id}
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -14 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+            >
+              {/* Top Banner */}
           <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-[#D9DDE4]/10 mb-8">
             <div className="flex items-center gap-3">
               <span className="font-mono-tech text-sm px-2.5 py-1 rounded bg-[#1F2430] text-[#D9DDE4] border border-[#D9DDE4]/20">
@@ -340,6 +349,8 @@ export default function ProjectShowcase() {
               </div>
             </div>
           </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
 
         {/* Additional Verified Project Archives Card Row */}

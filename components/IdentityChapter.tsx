@@ -112,6 +112,18 @@ export default function IdentityChapter() {
               </p>
             </div>
 
+            {/* The Origin Chronicle Callout */}
+            <div className="p-5 rounded-xl bg-gradient-to-r from-[#111318] via-[#161922] to-[#111318] border border-[#D9DDE4]/15 relative overflow-hidden shadow-lg">
+              <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-cyan-400 to-emerald-400" />
+              <div className="font-mono-tech text-[10px] text-cyan-400 mb-1 tracking-wider uppercase flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                THE ORIGIN CHRONICLE // THE SPARK
+              </div>
+              <p className="font-display text-sm text-[#F5F5F5] italic leading-relaxed">
+                &ldquo;Starting from building foundational components in Bhopal, I became obsessed with understanding how data flows: how an API call transforms into a deterministic record, and how vector embeddings allow machines to interpret human nuance.&rdquo;
+              </p>
+            </div>
+
             {/* Core Competency Matrix */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
               <div className="p-4 rounded-lg bg-[#111318]/70 border border-[#D9DDE4]/10 hover:border-[#D9DDE4]/30 transition-colors">

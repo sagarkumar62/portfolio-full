@@ -30,14 +30,15 @@ export default function JourneyTimeline() {
 
         {/* Section Headline */}
         <div className="max-w-3xl mb-16">
-          <div className="font-mono-tech text-xs text-[#777B84] mb-3 tracking-widest">
-            CAREER MILESTONES
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-[#161922] border border-[#D9DDE4]/15 text-[#D9DDE4] font-mono-tech text-xs mb-3">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            <span>THE CHRONOLOGY OF MASTERY // ACCELERATION PATH</span>
           </div>
           <h2 className="font-display text-4xl sm:text-6xl font-bold tracking-tight text-white leading-tight">
             ENGINEERING IN <span className="text-chrome">PRACTICE</span>.
           </h2>
           <p className="mt-4 text-[#A1A1AA] text-base sm:text-lg font-light leading-relaxed">
-            From frontend interfaces and component integration to full-stack blog platforms and autonomous agent extraction pipelines.
+            Every appointment has been a deliberate trial of acceleration: from crafting modular UI design systems and high-throughput web scraping to architecting verified AI agent extraction pipelines.
           </p>
         </div>
 
