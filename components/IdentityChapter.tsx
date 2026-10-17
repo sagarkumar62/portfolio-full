@@ -61,7 +61,7 @@ export default function IdentityChapter() {
                     src="/images/sagar-portrait-blue.jpg"
                     alt="Sagar Kumar — Full-Stack Developer & AI Engineer Intern"
                     fill
-                    className="object-cover object-center filter contrast-105 brightness-100 transition-all duration-500 group-hover:scale-105"
+                    className="object-cover object-center filter grayscale contrast-110 brightness-95 group-hover:grayscale-0 group-hover:contrast-105 transition-all duration-700"
                     priority
                   />
                   {/* Subtle vignette gradient */}
