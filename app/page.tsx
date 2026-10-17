@@ -1,6 +1,5 @@
 "use client";
 
-import CinematicNav from "@/components/CinematicNav";
 import EnterTheVoid from "@/components/EnterTheVoid";
 import IdentityChapter from "@/components/IdentityChapter";
 import EngineeringCore from "@/components/EngineeringCore";
@@ -13,10 +12,7 @@ import ContactSection from "@/components/ContactSection";
 export default function Home() {
   return (
     <main className="relative min-h-screen bg-[#050505] text-[#F5F5F5] selection:bg-[#D9DDE4]/20 selection:text-white overflow-x-hidden">
-      {/* HUD Navigation */}
-      <CinematicNav />
-
-      {/* Chapter 00: Enter The Void */}
+      {/* Chapter 00: Enter The Void with Sagar's Photo Splitting into Code */}
       <EnterTheVoid />
 
       {/* Chapter 01: The Identity */}

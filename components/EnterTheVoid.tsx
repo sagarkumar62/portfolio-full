@@ -5,12 +5,13 @@ import dynamic from "next/dynamic";
 import { ArrowDown, ChevronRight } from "lucide-react";
 import { PORTFOLIO_DATA } from "@/lib/portfolioData";
 
-// Dynamically import 3D cyber core with SSR disabled
-const CyberCore3D = dynamic(() => import("./CyberCore3D"), {
+// Dynamically import CodeSplittingPortrait with SSR disabled
+const CodeSplittingPortrait = dynamic(() => import("./CodeSplittingPortrait"), {
   ssr: false,
   loading: () => (
-    <div className="w-full h-full flex items-center justify-center">
-      <div className="w-48 h-48 rounded-full border border-[#D9DDE4]/15 animate-pulse" />
+    <div className="w-full max-w-lg aspect-[4/5] rounded-xl border border-[#D9DDE4]/20 bg-[#08090C] flex flex-col items-center justify-center gap-3">
+      <div className="w-10 h-10 border-2 border-[#D9DDE4]/20 border-t-emerald-400 rounded-full animate-spin" />
+      <span className="font-mono-tech text-xs text-[#777B84]">INITIALIZING NEURAL CODE MATRIX...</span>
     </div>
   ),
 });
@@ -19,7 +20,7 @@ export default function EnterTheVoid() {
   const [initialized, setInitialized] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setInitialized(true), 150);
+    const timer = setTimeout(() => setInitialized(true), 100);
     return () => clearTimeout(timer);
   }, []);
 
@@ -33,11 +34,11 @@ export default function EnterTheVoid() {
   return (
     <section
       id="void"
-      className="relative min-h-screen w-full flex flex-col justify-between pt-24 pb-12 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#050505]"
+      className="relative min-h-screen w-full flex flex-col justify-between pt-12 pb-12 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#050505]"
     >
       {/* Background Ambience & Lighting */}
       <div className="absolute inset-0 bg-tech-grid opacity-30 pointer-events-none" />
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-gradient-to-b from-[#D9DDE4]/[0.04] via-transparent to-transparent blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[900px] h-[550px] bg-gradient-to-b from-[#D9DDE4]/[0.05] via-transparent to-transparent blur-3xl pointer-events-none" />
       
       {/* Technical Reticles on corners */}
       <div className="absolute top-6 left-6 font-mono-tech text-[10px] text-[#777B84] tracking-widest hidden md:block">
@@ -48,10 +49,10 @@ export default function EnterTheVoid() {
       </div>
 
       {/* Main Content Layout */}
-      <div className="relative z-10 max-w-7xl mx-auto w-full my-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center py-8">
+      <div className="relative z-10 max-w-7xl mx-auto w-full my-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center py-6">
         
         {/* Left Column: Narrative Headline & Identity */}
-        <div className="lg:col-span-7 flex flex-col items-start justify-center space-y-6">
+        <div className="lg:col-span-6 flex flex-col items-start justify-center space-y-6">
           
           {/* Telemetry pill */}
           <div
@@ -96,7 +97,7 @@ export default function EnterTheVoid() {
 
           {/* Quick HUD Metrics */}
           <div
-            className={`grid grid-cols-3 gap-4 pt-2 w-full max-w-lg transition-all duration-1000 delay-450 transform ${
+            className={`grid grid-cols-3 gap-3.5 pt-2 w-full max-w-lg transition-all duration-1000 delay-450 transform ${
               initialized ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
           >
@@ -119,13 +120,13 @@ export default function EnterTheVoid() {
 
           {/* Action CTAs */}
           <div
-            className={`flex flex-wrap items-center gap-4 pt-4 transition-all duration-1000 delay-600 transform ${
+            className={`flex flex-wrap items-center gap-4 pt-3 transition-all duration-1000 delay-600 transform ${
               initialized ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
           >
             <button
               onClick={scrollToNext}
-              className="px-6 py-3 rounded bg-[#D9DDE4] text-[#050505] font-mono-tech text-xs font-semibold hover:bg-white transition-all shadow-[0_0_25px_rgba(217,221,228,0.2)] hover:shadow-[0_0_35px_rgba(255,255,255,0.4)] flex items-center gap-2 group cursor-pointer"
+              className="px-6 py-3.5 rounded bg-[#D9DDE4] text-[#050505] font-mono-tech text-xs font-semibold hover:bg-white transition-all shadow-[0_0_25px_rgba(217,221,228,0.2)] hover:shadow-[0_0_35px_rgba(255,255,255,0.4)] flex items-center gap-2 group cursor-pointer"
             >
               <span>ENTER THE SYSTEM</span>
               <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -133,31 +134,25 @@ export default function EnterTheVoid() {
 
             <a
               href="#projects"
-              className="px-6 py-3 rounded bg-[#111318] border border-[#D9DDE4]/25 text-[#D9DDE4] font-mono-tech text-xs hover:border-[#D9DDE4]/60 hover:text-white transition-all flex items-center gap-2"
+              className="px-6 py-3.5 rounded bg-[#111318] border border-[#D9DDE4]/25 text-[#D9DDE4] font-mono-tech text-xs hover:border-[#D9DDE4]/60 hover:text-white transition-all flex items-center gap-2"
             >
               <span>INSPECT CASE STUDIES</span>
+            </a>
+
+            <a
+              href={PORTFOLIO_DATA.personal.resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-3.5 rounded border border-[#D9DDE4]/15 text-[#777B84] font-mono-tech text-xs hover:text-white hover:border-[#D9DDE4]/40 transition-colors"
+            >
+              RESUME.PDF
             </a>
           </div>
         </div>
 
-        {/* Right Column: 3D Cyber Core & Sculptural Visual */}
-        <div className="lg:col-span-5 relative flex items-center justify-center min-h-[380px] lg:min-h-[520px]">
-          {/* Tech decorative backing */}
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <div className="w-[320px] h-[320px] sm:w-[420px] sm:h-[420px] rounded-full border border-[#D9DDE4]/10 border-dashed animate-spin" style={{ animationDuration: "60s" }} />
-            <div className="absolute w-[240px] h-[240px] sm:w-[320px] sm:h-[320px] rounded-full border border-[#D9DDE4]/5" />
-          </div>
-
-          {/* 3D Scene */}
-          <div className="w-full h-full relative z-10">
-            <CyberCore3D />
-          </div>
-
-          {/* System HUD Overlay labels */}
-          <div className="absolute bottom-4 right-4 bg-[#050505]/80 border border-[#D9DDE4]/15 px-3 py-1.5 rounded backdrop-blur-md hidden sm:block">
-            <div className="font-mono-tech text-[9px] text-[#777B84]">MODEL // SCULPTURAL KERNEL</div>
-            <div className="font-mono-tech text-[10px] text-[#D9DDE4]">THREE.JS 0.174 // WEBGL 2.0</div>
-          </div>
+        {/* Right Column: Sagar's Photo Splitting Into Code On Scroll */}
+        <div className="lg:col-span-6 relative flex items-center justify-center">
+          <CodeSplittingPortrait />
         </div>
       </div>
 
@@ -172,8 +167,8 @@ export default function EnterTheVoid() {
           onClick={scrollToNext}
           className="flex items-center gap-2 font-mono-tech text-xs text-[#A1A1AA] hover:text-white transition-colors group cursor-pointer"
         >
-          <span>SCROLL TO EXPLORE</span>
-          <ArrowDown className="w-3.5 h-3.5 group-hover:translate-y-1 transition-transform" />
+          <span>SCROLL TO DECONSTRUCT INTO CODE</span>
+          <ArrowDown className="w-3.5 h-3.5 group-hover:translate-y-1 transition-transform text-emerald-400" />
         </button>
       </div>
     </section>
